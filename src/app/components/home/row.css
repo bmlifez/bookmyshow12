@@ -1,0 +1,36 @@
+.liStyle {
+    margin: 0 10px;
+    position: relative;
+    flex-shrink: 0!important;
+    list-style-type: none;
+    border-style: groove;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.grey {
+    background: grey;
+}
+
+.green {
+    background:green;
+}
+
+.displayRight {
+    display: flex;
+    margin-left: 50%;
+}
+
+.displayLeft {
+    display: flex;
+    margin-left: -52%;
+}
+
+.displayMiddle {
+    display: flex;
+}
+
+.btn{
+    width: 10%;
+    padding: 10px;
+}
