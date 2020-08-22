@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
-import postReducer from './homeReducer/selectSeatReducer';
+import postReducer from './homeReducer/postReducer';
 
-export default combineReducers({
+const allReducers =  combineReducers({
     post: postReducer
 });
+export default allReducers;

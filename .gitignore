@@ -1,0 +1,10 @@
+.history/
+.vscode
+node_modules/
+dist/
+
+.idea/
+coverage-report/
+.vscode
+performance-build
+node_modules

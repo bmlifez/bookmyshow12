@@ -125,9 +125,8 @@ export default class Home extends React.Component {
             <React.Fragment>
             {mockdata && mockdata.length>0 && mockdata.map((value,index)=>{
                     return <Rows 
-                                data={value} key={index}
-                                selectedData={selectedData}
-                                getupdateRowValue={this.updateRowValue}
+                                data={value} 
+                                key={index}
                             />
                 }) 
             }

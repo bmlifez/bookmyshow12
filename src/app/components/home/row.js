@@ -2,19 +2,20 @@ import React from 'react';
 import {Constant} from '../../../enums/constant';
 import {connect} from 'react-redux';
 import {selectSeat} from '../../../store/actions/homeAction';
-
+import store from '../../../store/store';
 import './row.css';
 
-const mapStateToProps = (state /*, ownProps*/) => {
+const mapStateToProps = (state,getState) => {
+    console.log(state);
     return {
-        selectedSeat: state.selectedSeat
+        selectedSeat: state.post.selectedSeat
     }
 }
 
 const Rows = (prop) => {
         let mockData=prop?.data;
         let rowObject=mockData?.rows;
-        console.log(selectSeat,'selectedSeat');
+        console.log('store',store.getState());
         return (
             <React.Fragment>
                 <h1>{mockData?.type} - Rs {mockData?.basePrice}</h1>
@@ -22,8 +23,8 @@ const Rows = (prop) => {
                     return <RowData 
                                 data={value} 
                                 key={index}
-                                getupdateRowValue={prop.getupdateRowValue}
-                                selectedData={prop.selectedData}
+                                onAction={prop.onAction}
+                                selectedData={prop.selectedSeat}
                             />
                 })}
             </React.Fragment>
@@ -54,7 +55,8 @@ const RowData = (prop) => {
                                 key={index} 
                                 data={node}
                                 getupdateRowValue={prop.getupdateRowValue}
-                                selectedData={prop.selectedData} 
+                                selectedData={prop.selectedData}
+                                onAction={prop.onAction} 
                             />
                 })}
             </ul>
@@ -64,6 +66,7 @@ const RowData = (prop) => {
 
 
 const Node = (prop) =>{
+   
     const nodeData = prop?.data;
     const getNodeStyle = (nodeData,selectedData) =>{
         const position1 = selectedData?.position1;
@@ -79,18 +82,22 @@ const Node = (prop) =>{
                 }
             }
             // Case 2: If only one is selected
-            if(nodeData.rowName===position1.currentRow && nodeData.seat_name===position1.currentIndex){
-                return 'liStyle green';
-            }
+            // if(nodeData.rowName===position1.currentRow && nodeData.seat_name===position1.currentIndex){
+            //     return 'liStyle green';
+            // }
             return 'liStyle';
         }
     }
     return (
-        <li className={getNodeStyle(nodeData,prop.selectedData)} onClick={selectSeat(nodeData)}>{nodeData.seat_name}</li>
+        <li className="liStyle" onClick={()=>prop.onAction(nodeData)}>{nodeData.seat_name}</li>
     )
 }
 
-const mapDispatchToProps = {selectSeat}
+const mapDispatchToProps = dispatch => {
+    return {
+        onAction: (payload) => dispatch(selectSeat(payload)),
+    }
+}
 
 export default connect(
     mapStateToProps,

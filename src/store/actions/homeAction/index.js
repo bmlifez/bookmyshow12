@@ -1,9 +1,10 @@
-import {FETCH_POST,SELECT_SEAT} from './types';
+import {SELECT_SEAT} from './types';
 
-export const selectSeat=(payload)=> dispatch =>{
-    console.log('selectSeat',payload);
-    // dispatch({
-    //     type: SELECT_SEAT,
-    //     payload 
-    // })
+export function selectSeat(payload){
+    return {
+        type:SELECT_SEAT,
+        payload
+    }
 }
+
+export default selectSeat;
