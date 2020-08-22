@@ -1,6 +1,6 @@
 import  React  from 'react';
-import  {data} from './mock';
-import  {Rows} from './row';
+import  {data} from '../../../mock/mock';
+import  Rows from './row';
 import './row.css';
 
 export default class Home extends React.Component {
@@ -42,6 +42,7 @@ export default class Home extends React.Component {
          * 1. check if any is selected or not
          * 2. if selected then same row or not , if row is changed update value
          */
+
         if(!position1.checked){
             this.setState({
                 selectedData:{
@@ -55,6 +56,7 @@ export default class Home extends React.Component {
                 totalPrice:value.seat_price
             })
         }
+
         //3. If Person is selecting same row 2nd position 
         if(position1?.checked&&position1?.currentRow===value.rowName){
             let maxSeatDiff=value.seat_name - position1.currentIndex;

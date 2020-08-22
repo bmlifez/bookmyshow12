@@ -1,10 +1,20 @@
 import React from 'react';
-import {Constant} from '../../../utils/constant';
+import {Constant} from '../../../enums/constant';
+import {connect} from 'react-redux';
+import {selectSeat} from '../../../store/actions/homeAction';
+
 import './row.css';
+
+const mapStateToProps = (state /*, ownProps*/) => {
+    return {
+        selectedSeat: state.selectedSeat
+    }
+}
 
 const Rows = (prop) => {
         let mockData=prop?.data;
         let rowObject=mockData?.rows;
+        console.log(selectSeat,'selectedSeat');
         return (
             <React.Fragment>
                 <h1>{mockData?.type} - Rs {mockData?.basePrice}</h1>
@@ -76,8 +86,13 @@ const Node = (prop) =>{
         }
     }
     return (
-        <li className={getNodeStyle(nodeData,prop.selectedData)} onClick={e=>prop.getupdateRowValue(nodeData)}>{nodeData.seat_name}</li>
+        <li className={getNodeStyle(nodeData,prop.selectedData)} onClick={selectSeat(nodeData)}>{nodeData.seat_name}</li>
     )
 }
 
-export {Rows};
+const mapDispatchToProps = {selectSeat}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Rows)
