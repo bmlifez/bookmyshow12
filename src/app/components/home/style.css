@@ -8,6 +8,11 @@
     cursor: pointer;
 }
 
+.movie-title{
+    font-style: italic;
+    font-weight: 100;
+}
+
 .grey {
     background: grey;
 }
